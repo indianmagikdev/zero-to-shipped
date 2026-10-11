@@ -29,6 +29,17 @@ const analysisSchema = new mongoose.Schema(
       enum: ["queued", "scored", "scoring_error"],
       default: "queued",
     },
+    score: {
+      type: Number,
+      min: 0,
+      max: 100,
+    },
+    matchedSkills: {
+      type: [String],
+    },
+    missingSkills: {
+      type: [String],
+    },
   },
   { timestamps: true }
 );

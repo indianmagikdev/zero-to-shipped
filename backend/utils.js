@@ -1,5 +1,6 @@
 export const MAX_RESUME_SIZE = 5 * 1024 * 1024;
 export const MAX_JOB_DESCRIPTION_LENGTH = 10000;
+export const MAX_RESUME_TEXT_LENGTH = 30000;
 
 export class AppError extends Error {
   constructor(statusCode, message) {

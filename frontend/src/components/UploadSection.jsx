@@ -128,7 +128,7 @@ export default function UploadSection({ onSubmitted }) {
           fileName={file?.name}
           stage={submitting ? "uploading" : "idle"}
           dragging={dragging}
-          stepText="Submitting your resume…"
+          stepText="Parsing your resume and calculating your score…"
           onOpenPicker={openPicker}
           onDrop={onDrop}
           onDragOver={onDragOver}
@@ -165,8 +165,8 @@ export default function UploadSection({ onSubmitted }) {
           <span>{jobDescription.length}/10,000</span>
         </div>
         <p className="privacy-note">
-          AI scoring is not enabled yet. Your resume PDF and job description are stored in
-          MongoDB for future comparison.
+          Your resume is parsed and compared with the job description using Labd AI. The API key
+          stays on the server.
         </p>
         {error && (
           <p className="error" role="alert">

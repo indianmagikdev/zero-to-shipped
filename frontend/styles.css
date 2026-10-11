@@ -273,6 +273,38 @@ nav .nav-cta {
 .receipt-copy { margin: 14px auto 0; max-width: 500px; color: var(--muted); }
 .receipt-id { margin-top: 18px; color: var(--muted); font-size: 0.78rem; }
 
+.score-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0 28px;
+}
+
+.score-value strong { font-size: 3.5rem; line-height: 1; }
+.score-value span { color: var(--muted); }
+
+.skill-results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  text-align: left;
+}
+
+.skill-group {
+  padding: 18px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.skill-group h3 { margin-bottom: 12px; font-size: 1rem; }
+.skill-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+.skill-list li { padding: 5px 10px; border-radius: 999px; font-size: 0.82rem; }
+.matched-skills li { color: var(--good); background: var(--chip-present); }
+.missing-skills li { color: var(--bad); background: rgba(248, 113, 113, 0.12); }
+.skill-group .receipt-copy { margin: 0; font-size: 0.88rem; }
+
 .again-btn {
   display: block;
   margin: 32px auto 0;
@@ -337,4 +369,5 @@ footer {
   .how { grid-template-columns: 1fr; }
   nav a:not(.nav-cta) { display: none; }
   .submit-btn { width: 100%; }
+  .skill-results { grid-template-columns: 1fr; }
 }
