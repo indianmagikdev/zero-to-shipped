@@ -84,13 +84,38 @@ export default function UploadSection({ onSubmitted }) {
         method: "POST",
         body: formData,
       });
-      const result = await response.json();
+      const responseText = await response.text();
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch {
+        if (!response.ok) {
+          throw new Error(
+            `API returned HTTP ${response.status} without a JSON error. Check the backend and MongoDB.`
+          );
+        }
+        throw new Error(`API returned an invalid response (HTTP ${response.status}).`);
+      }
+
       if (!response.ok) {
-        throw new Error(result.error || "The submission could not be saved.");
+        const message =
+          result && typeof result === "object" && typeof result.error === "string"
+            ? result.error
+            : "The submission could not be saved.";
+        throw new Error(
+          message
+        );
+      }
+      if (!result || typeof result !== "object" || typeof result.id !== "string") {
+        throw new Error("API returned an unexpected response. The submission could not be confirmed.");
       }
       onSubmitted(result);
     } catch (submissionError) {
-      setError(submissionError.message || "Could not reach the server. Please try again.");
+      setError(
+        submissionError instanceof TypeError
+          ? "Could not reach the API server. Start the backend and make sure MongoDB is running."
+          : submissionError.message || "Could not submit the resume. Please try again."
+      );
     } finally {
       setSubmitting(false);
     }
