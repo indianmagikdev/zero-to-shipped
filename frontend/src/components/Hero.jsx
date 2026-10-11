@@ -6,8 +6,8 @@ export default function Hero() {
         <span className="gradient-text">before a recruiter does.</span>
       </h1>
       <p className="sub">
-        Upload a PDF. Get an instant score, the skills we detected,
-        and the ones that are missing — so you know exactly what to fix.
+        Add your resume and a job description to prepare a tailored comparison.
+        Resume scoring and skill matching are coming soon.
       </p>
     </section>
   );

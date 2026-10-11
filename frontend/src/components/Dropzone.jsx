@@ -1,23 +1,22 @@
-export default function Dropzone({ stage, dragging, stepText, onOpenPicker, children, ...dropHandlers }) {
+export default function Dropzone({
+  fileName,
+  stage,
+  dragging,
+  stepText,
+  onOpenPicker,
+  children,
+  ...dropHandlers
+}) {
   return (
     <div
       className={`dropzone${dragging ? " dragover" : ""}`}
-      tabIndex={0}
-      role="button"
-      aria-label="Upload resume PDF"
       onClick={onOpenPicker}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onOpenPicker();
-        }
-      }}
       {...dropHandlers}
     >
       {stage === "idle" ? (
         <div className="dropzone-idle">
           <div className="drop-icon">📄</div>
-          <p className="drop-title">Drag &amp; drop your resume PDF</p>
+          <p className="drop-title">{fileName || "Drag & drop your resume PDF"}</p>
           <p className="drop-or">or</p>
           <button
             className="browse-btn"
@@ -29,7 +28,7 @@ export default function Dropzone({ stage, dragging, stepText, onOpenPicker, chil
           >
             Browse files
           </button>
-          <p className="drop-hint">PDF only · Nothing leaves your browser — this is a mock</p>
+          <p className="drop-hint">PDF only · Maximum file size 5 MB</p>
         </div>
       ) : (
         <div className="dropzone-parsing">
