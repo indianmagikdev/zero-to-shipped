@@ -1,4 +1,5 @@
 import Analysis from "../models/Analysis.js";
+import { connectDatabase } from "../config/database.js";
 import { AppError, isPdfBuffer, MAX_JOB_DESCRIPTION_LENGTH } from "../utils.js";
 
 export async function saveAnalysis({ file, jobDescription }) {
@@ -23,6 +24,8 @@ export async function saveAnalysis({ file, jobDescription }) {
       `Job description must be ${MAX_JOB_DESCRIPTION_LENGTH} characters or fewer.`
     );
   }
+
+  await connectDatabase();
 
   return Analysis.create({
     resumeFileName: file.originalname,

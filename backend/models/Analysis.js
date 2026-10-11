@@ -26,7 +26,7 @@ const analysisSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["queued"],
+      enum: ["queued", "scored", "scoring_error"],
       default: "queued",
     },
   },

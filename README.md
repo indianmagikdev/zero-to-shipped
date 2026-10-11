@@ -26,3 +26,15 @@ Vite proxies `/api` requests to the API on port 5000. The backend exposes `GET /
 
 The PDF is validated and stored in MongoDB as binary data (up to 5 MB per upload), alongside
 its filename and size, the supplied job description, the queued status, and timestamps.
+
+## Deploy to Vercel
+
+The root `vercel.json` defines two services: `backend` (Express, with `backend/app.js` as its
+serverless entrypoint) and `frontend` (Vite). Requests to `/api/*` are routed to the backend;
+all other paths are routed to the frontend. Set `MONGODB_URI` in the Vercel project's environment
+variables for each deployment environment. The frontend uses the public same-origin `/api` route,
+so no service binding is needed.
+
+For local development, Vite's `/api` proxy targets `http://localhost:5000`. The backend's
+`server.js` connects to MongoDB before opening its local port; the Vercel Express entrypoint
+connects on demand when a comparison submission is received.
