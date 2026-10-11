@@ -98,6 +98,10 @@ export default function UploadSection({ onSubmitted }) {
       }
 
       if (!response.ok) {
+        if (response.status === 402) {
+          window.alert("Labd token has been exhausted. Contact admin.");
+          return;
+        }
         const message =
           result && typeof result === "object" && typeof result.error === "string"
             ? result.error

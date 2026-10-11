@@ -61,7 +61,7 @@ async function requestLabd(apiKey, messages) {
       console.error(`labd API error: HTTP ${response.status}`);
       const errors = {
         401: [502, "LABD_API_KEY was rejected. Check that the key is valid and has not been revoked."],
-        402: [503, "The Labd AI allowance is exhausted. Add allowance before trying again."],
+        402: [402, "Labd token has been exhausted. Contact admin."],
         403: [503, "The Labd AI API is disabled for this account."],
         429: [429, "The Labd AI rate limit was reached. Wait a minute and try again."],
       };
